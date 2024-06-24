@@ -1,0 +1,186 @@
+--
+-- File generated with SQLiteStudio v3.4.4 on Sun Jun 16 16:35:28 2024
+--
+-- Text encoding used: System
+--
+PRAGMA foreign_keys = off;
+BEGIN TRANSACTION;
+
+-- Table: configs
+CREATE TABLE configs (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    parent_id   INTEGER NOT NULL,
+    parent_type TEXT    NOT NULL,
+    key         TEXT    NOT NULL,
+    value       TEXT,
+    UNIQUE (
+        parent_id,
+        parent_type,
+        key
+    )
+);
+
+
+-- Table: queue_jobs
+CREATE TABLE queue_jobs (
+    id                INTEGER PRIMARY KEY,
+    task_id           INTEGER,
+    subtask_id        INTEGER,
+    step_id           INTEGER,
+    command           TEXT,
+    name              TEXT,
+    status            TEXT,
+    start_datetime    TEXT,
+    end_datetime      TEXT,
+    triggered_by      TEXT,
+    execution_server  TEXT,
+    submission_server TEXT,
+    log_file          TEXT,
+    FOREIGN KEY (
+        step_id
+    )
+    REFERENCES steps (id) 
+);
+
+
+-- Table: queue_steps
+CREATE TABLE queue_steps (
+    id                  INTEGER PRIMARY KEY,
+    template_task_id    INTEGER,
+    template_subtask_id INTEGER,
+    template_step_id    INTEGER,
+    parent_task_id      INTEGER,
+    parent_subtask_id   INTEGER,
+    status              TEXT,
+    created_datetime    TEXT,
+    updated_datetime    TEXT,
+    execution_space     TEXT
+);
+
+
+-- Table: queue_subtasks
+CREATE TABLE queue_subtasks (
+    id                  INTEGER PRIMARY KEY,
+    template_subtask_id INTEGER,
+    parent_task_id      INTEGER,
+    status              TEXT,
+    created_datetime    TEXT,
+    updated_datetime    TEXT,
+    execution_space     TEXT,
+    FOREIGN KEY (
+        parent_task_id
+    )
+    REFERENCES queue_tasks (id),
+    FOREIGN KEY (
+        template_subtask_id
+    )
+    REFERENCES subtasks (id) 
+);
+
+
+-- Table: queue_tasks
+CREATE TABLE queue_tasks (
+    id               INTEGER PRIMARY KEY,
+    template_task_id INTEGER,
+    status           TEXT,
+    created_datetime TEXT,
+    updated_datetime TEXT,
+    execution_space  TEXT,
+    FOREIGN KEY (
+        template_task_id
+    )
+    REFERENCES tasks (id) 
+);
+
+
+-- Table: step_params
+CREATE TABLE step_params (
+    id          INTEGER PRIMARY KEY,
+    step_id     INTEGER,
+    param_name  TEXT,
+    param_value TEXT,
+    FOREIGN KEY (
+        step_id
+    )
+    REFERENCES steps (id) 
+);
+
+
+-- Table: steps
+CREATE TABLE steps (
+    id                INTEGER PRIMARY KEY,
+    step_name         TEXT,
+    file_path         TEXT,
+    function_name     TEXT,
+    created_by        TEXT,
+    creation_datetime TEXT,
+    description       TEXT,
+    notes             TEXT,
+    log_file          TEXT
+);
+
+
+-- Table: subtasks
+CREATE TABLE subtasks (
+    id                INTEGER PRIMARY KEY,
+    name              TEXT,
+    created_by        TEXT,
+    creation_datetime TEXT,
+    description       TEXT,
+    notes             TEXT
+);
+
+
+-- Table: subtasks_steps
+CREATE TABLE subtasks_steps (
+    subtask_id INTEGER,
+    step_id    INTEGER,
+    PRIMARY KEY (
+        subtask_id,
+        step_id
+    ),
+    FOREIGN KEY (
+        subtask_id
+    )
+    REFERENCES subtasks (id),
+    FOREIGN KEY (
+        step_id
+    )
+    REFERENCES steps (id) 
+);
+
+
+-- Table: tasks
+CREATE TABLE tasks (
+    id                INTEGER PRIMARY KEY,
+    name              TEXT,
+    created_by        TEXT,
+    creation_datetime TEXT,
+    description       TEXT,
+    notes             TEXT,
+    execution_space   TEXT,
+    custom_type       TEXT
+);
+
+
+-- Table: tasks_subtasks
+CREATE TABLE tasks_subtasks (
+    task_id    INTEGER,
+    subtask_id INTEGER,
+    PRIMARY KEY (
+        task_id,
+        subtask_id
+    ),
+    FOREIGN KEY (
+        task_id
+    )
+    REFERENCES tasks (id),
+    FOREIGN KEY (
+        subtask_id
+    )
+    REFERENCES subtasks (id) 
+);
+
+
+COMMIT TRANSACTION;
+PRAGMA foreign_keys = on;

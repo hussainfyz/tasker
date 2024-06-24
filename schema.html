@@ -1,0 +1,374 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+    <meta http-equiv="Content-Type" content="text/html; charset=System"/>
+    <title>Exported database: tasker</title>
+    <style type="text/css">
+        table
+        {
+            border-style: solid;
+            border-width: 1px;
+            border-color: black;
+            border-collapse: collapse;
+        }
+        
+        table tr
+        {
+            background-color: white;
+        }
+        
+        table tr.header
+        {
+            background-color: #DDDDDD;
+        }
+        
+        table tr.title
+        {
+            background-color: #EEEEEE;
+        }
+        
+        table tr td
+        {
+            padding: 0px 3px 0px 3px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #666666;
+        }
+        
+        table tr td.null
+        {
+            color: #999999;
+            text-align: center;
+            padding: 0px 3px 0px 3px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #666666;
+        }
+        
+        table tr td.separator
+        {
+            padding: 0px 3px 0px 3px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #666666;
+            background-color: #DDDDDD;
+        }
+        
+        table tr td.rownum
+        {
+            padding: 0px 3px 0px 3px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #666666;
+            background-color: #DDDDDD;
+            text-align: right;
+        }
+        
+    </style>
+    <body>
+        <table>
+            <tr class="title">
+                <td colspan="5" align="center">Table: configs</td>
+            </tr>
+            <tr class="header">
+                <td>
+                    <b>id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>parent_id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>parent_type</b><br/>TEXT
+                </td>
+                <td>
+                    <b>key</b><br/>TEXT
+                </td>
+                <td>
+                    <b>value</b><br/>TEXT
+                </td>
+            </tr>
+        </table>
+        <br/><br/>
+        <table>
+            <tr class="title">
+                <td colspan="13" align="center">Table: queue_jobs</td>
+            </tr>
+            <tr class="header">
+                <td>
+                    <b>id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>task_id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>subtask_id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>step_id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>command</b><br/>TEXT
+                </td>
+                <td>
+                    <b>name</b><br/>TEXT
+                </td>
+                <td>
+                    <b>status</b><br/>TEXT
+                </td>
+                <td>
+                    <b>start_datetime</b><br/>TEXT
+                </td>
+                <td>
+                    <b>end_datetime</b><br/>TEXT
+                </td>
+                <td>
+                    <b>triggered_by</b><br/>TEXT
+                </td>
+                <td>
+                    <b>execution_server</b><br/>TEXT
+                </td>
+                <td>
+                    <b>submission_server</b><br/>TEXT
+                </td>
+                <td>
+                    <b>log_file</b><br/>TEXT
+                </td>
+            </tr>
+        </table>
+        <br/><br/>
+        <table>
+            <tr class="title">
+                <td colspan="10" align="center">Table: queue_steps</td>
+            </tr>
+            <tr class="header">
+                <td>
+                    <b>id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>template_task_id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>template_subtask_id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>template_step_id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>parent_task_id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>parent_subtask_id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>status</b><br/>TEXT
+                </td>
+                <td>
+                    <b>created_datetime</b><br/>TEXT
+                </td>
+                <td>
+                    <b>updated_datetime</b><br/>TEXT
+                </td>
+                <td>
+                    <b>execution_space</b><br/>TEXT
+                </td>
+            </tr>
+        </table>
+        <br/><br/>
+        <table>
+            <tr class="title">
+                <td colspan="7" align="center">Table: queue_subtasks</td>
+            </tr>
+            <tr class="header">
+                <td>
+                    <b>id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>template_subtask_id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>parent_task_id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>status</b><br/>TEXT
+                </td>
+                <td>
+                    <b>created_datetime</b><br/>TEXT
+                </td>
+                <td>
+                    <b>updated_datetime</b><br/>TEXT
+                </td>
+                <td>
+                    <b>execution_space</b><br/>TEXT
+                </td>
+            </tr>
+        </table>
+        <br/><br/>
+        <table>
+            <tr class="title">
+                <td colspan="6" align="center">Table: queue_tasks</td>
+            </tr>
+            <tr class="header">
+                <td>
+                    <b>id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>template_task_id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>status</b><br/>TEXT
+                </td>
+                <td>
+                    <b>created_datetime</b><br/>TEXT
+                </td>
+                <td>
+                    <b>updated_datetime</b><br/>TEXT
+                </td>
+                <td>
+                    <b>execution_space</b><br/>TEXT
+                </td>
+            </tr>
+        </table>
+        <br/><br/>
+        <table>
+            <tr class="title">
+                <td colspan="4" align="center">Table: step_params</td>
+            </tr>
+            <tr class="header">
+                <td>
+                    <b>id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>step_id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>param_name</b><br/>TEXT
+                </td>
+                <td>
+                    <b>param_value</b><br/>TEXT
+                </td>
+            </tr>
+        </table>
+        <br/><br/>
+        <table>
+            <tr class="title">
+                <td colspan="9" align="center">Table: steps</td>
+            </tr>
+            <tr class="header">
+                <td>
+                    <b>id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>step_name</b><br/>TEXT
+                </td>
+                <td>
+                    <b>file_path</b><br/>TEXT
+                </td>
+                <td>
+                    <b>function_name</b><br/>TEXT
+                </td>
+                <td>
+                    <b>created_by</b><br/>TEXT
+                </td>
+                <td>
+                    <b>creation_datetime</b><br/>TEXT
+                </td>
+                <td>
+                    <b>description</b><br/>TEXT
+                </td>
+                <td>
+                    <b>notes</b><br/>TEXT
+                </td>
+                <td>
+                    <b>log_file</b><br/>TEXT
+                </td>
+            </tr>
+        </table>
+        <br/><br/>
+        <table>
+            <tr class="title">
+                <td colspan="6" align="center">Table: subtasks</td>
+            </tr>
+            <tr class="header">
+                <td>
+                    <b>id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>name</b><br/>TEXT
+                </td>
+                <td>
+                    <b>created_by</b><br/>TEXT
+                </td>
+                <td>
+                    <b>creation_datetime</b><br/>TEXT
+                </td>
+                <td>
+                    <b>description</b><br/>TEXT
+                </td>
+                <td>
+                    <b>notes</b><br/>TEXT
+                </td>
+            </tr>
+        </table>
+        <br/><br/>
+        <table>
+            <tr class="title">
+                <td colspan="2" align="center">Table: subtasks_steps</td>
+            </tr>
+            <tr class="header">
+                <td>
+                    <b>subtask_id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>step_id</b><br/>INTEGER
+                </td>
+            </tr>
+        </table>
+        <br/><br/>
+        <table>
+            <tr class="title">
+                <td colspan="8" align="center">Table: tasks</td>
+            </tr>
+            <tr class="header">
+                <td>
+                    <b>id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>name</b><br/>TEXT
+                </td>
+                <td>
+                    <b>created_by</b><br/>TEXT
+                </td>
+                <td>
+                    <b>creation_datetime</b><br/>TEXT
+                </td>
+                <td>
+                    <b>description</b><br/>TEXT
+                </td>
+                <td>
+                    <b>notes</b><br/>TEXT
+                </td>
+                <td>
+                    <b>execution_space</b><br/>TEXT
+                </td>
+                <td>
+                    <b>custom_type</b><br/>TEXT
+                </td>
+            </tr>
+        </table>
+        <br/><br/>
+        <table>
+            <tr class="title">
+                <td colspan="2" align="center">Table: tasks_subtasks</td>
+            </tr>
+            <tr class="header">
+                <td>
+                    <b>task_id</b><br/>INTEGER
+                </td>
+                <td>
+                    <b>subtask_id</b><br/>INTEGER
+                </td>
+            </tr>
+        </table>
+        <br/><br/>
+        <i>Document generated by SQLiteStudio v3.4.4 on Sun Jun 16 16:33:16 2024</i>
+    </body>
+</html>
