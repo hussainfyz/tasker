@@ -1,6 +1,7 @@
 import sqlite3
 import datetime
 import importlib
+from db.config import connect_db
 
 class Step:
     def __init__(self, subtask_id, name, function_name, module_path, args=None):
@@ -37,7 +38,9 @@ class Step:
                 self.args[key] = outputs.get(step_name)
 
     def insert_into_db(self):
-        connection = sqlite3.connect('tasker.db')
+
+        #connection = sqlite3.connect('tasker.db')
+        connection=connect_db()
         cursor = connection.cursor()
         cursor.execute('''
             INSERT INTO steps (subtask_id, name, function_name, module_path, args, status, start_datetime, log_file, output)
@@ -47,7 +50,8 @@ class Step:
         connection.close()
 
     def update_status_in_db(self):
-        connection = sqlite3.connect('tasker.db')
+        #connection = sqlite3.connect('tasker.db')
+        connection=connect_db()
         cursor = connection.cursor()
         cursor.execute('''
             UPDATE steps

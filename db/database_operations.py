@@ -6,11 +6,12 @@ from .db_tasks import TaskDB
 from .db_subtasks import SubtaskDB
 from .db_steps import StepDB
 from .db_tasks import TaskDB
+from .config import get_db_file
     #exit()
     #result = [dict_factory(cursor, row) for row in rows]
     #return json.dumps(result, default=str)
 def connect_db():
-    return sqlite3.connect('tasker.db')
+    return sqlite3.connect(get_db_file())
 
 def dict_factory(cursor, row):
     return {cursor.description[idx][0]: value for idx, value in enumerate(row)}
@@ -32,6 +33,8 @@ def get_subtasks_by_task_id(task_id):
     """, (task_id,))
     subtasks = cursor.fetchall()
     connection.close()
+    print("All subtasks for the task id",task_id)
+    print(subtasks)
     return subtasks
 
 def get_steps_by_subtask_id(subtask_id):
@@ -45,6 +48,7 @@ def get_steps_by_subtask_id(subtask_id):
         WHERE subtasks_steps.subtask_id = ?
     """, (subtask_id,))
     steps = cursor.fetchall()
+    print("All steps for the subtask",steps)
     connection.close()
     return steps
 
